@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="beige_claro">#f7f3e8</color>
+    <color name="beige_arena">#E1C4AE</color>
+    <color name="terracota">#c37a67</color>
+    <color name="verde_oliva">#A1A288</color>
+    <color name="verde_profundo">#738670</color>
+    <color name="blanco">#FFFFFF</color>
+    <color name="texto_oscuro">#3D3D3D</color>
+</resources>

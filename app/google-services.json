@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "512228895752",
+    "project_id": "xploremx-aa28b",
+    "storage_bucket": "xploremx-aa28b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512228895752:android:95a9fb56ce9ef6f4b6b5bd",
+        "android_client_info": {
+          "package_name": "com.xploremx.xploremx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "512228895752-jvq2imt49c1ftdcb5mmqoa0d56in6bhk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.xploremx.xploremx",
+            "certificate_hash": "540d6854343f9baf23d2796e8a334a02ae7a42bc"
+          }
+        },
+        {
+          "client_id": "512228895752-9fm7pg4e5ond78ut1a8e6pji6r8b71h7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCB1H6jDFUDuksJhiSAlJD6BEIK6HVkIcg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "512228895752-9fm7pg4e5ond78ut1a8e6pji6r8b71h7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
