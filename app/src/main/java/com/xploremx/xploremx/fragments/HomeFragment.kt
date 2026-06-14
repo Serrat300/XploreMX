@@ -27,6 +27,7 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private var botonSeleccionado: Button? = null
 
     private val listaLugares = mutableListOf<Lugar>()
 
@@ -212,12 +213,15 @@ class HomeFragment : Fragment() {
                             params
 
                         btnTodos.setOnClickListener {
+
+                            seleccionarBoton(btnTodos)
+
                             cargarLugares(null)
                         }
 
-                        binding.layoutCategorias.addView(
-                            btnTodos
-                        )
+                        binding.layoutCategorias.addView(btnTodos)
+
+                        botonSeleccionado = btnTodos
 
                         for (i in 0 until categorias.length()) {
 
@@ -249,6 +253,8 @@ class HomeFragment : Fragment() {
                                 params
 
                             btn.setOnClickListener {
+
+                                seleccionarBoton(btn)
 
                                 cargarLugares(
                                     cat.getInt("id")
@@ -343,6 +349,42 @@ class HomeFragment : Fragment() {
 
         queue.add(request)
     }
+
+    private fun seleccionarBoton(btn: Button) {
+
+        botonSeleccionado?.backgroundTintList =
+            android.content.res.ColorStateList.valueOf(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.verde_profundo
+                )
+            )
+
+        botonSeleccionado?.setTextColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.blanco
+            )
+        )
+
+        btn.backgroundTintList =
+            android.content.res.ColorStateList.valueOf(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.terracota
+                )
+            )
+
+        btn.setTextColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.blanco
+            )
+        )
+
+        botonSeleccionado = btn
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
