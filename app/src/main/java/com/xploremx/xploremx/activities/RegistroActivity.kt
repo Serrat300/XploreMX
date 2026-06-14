@@ -9,11 +9,12 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.xploremx.xploremx.databinding.ActivityRegistroBinding
 import org.json.JSONObject
+import com.xploremx.xploremx.utils.Constants
 
 class RegistroActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegistroBinding
-    private val URL = "http://192.168.100.56/xploremx/registro.php"
+    private val URL = "${Constants.BASE_URL}/registro.php"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

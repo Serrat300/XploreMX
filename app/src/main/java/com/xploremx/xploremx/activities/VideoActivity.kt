@@ -8,27 +8,27 @@ import android.widget.MediaController
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.xploremx.xploremx.databinding.ActivityVideoBinding
+import com.xploremx.xploremx.utils.Constants
 
 class VideoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityVideoBinding
-    private val BASE_URL = "http://192.168.100.56/xploremx"
 
     // Videos de prueba de YouTube (URLs directas no funcionan, usamos URLs locales)
     private val videos = listOf(
         mapOf(
             "titulo" to "Catedral Metropolitana",
-            "url" to "$BASE_URL/videos/catedral.mp4",
+            "url" to "${Constants.BASE_URL}/videos/catedral.mp4",
             "comentario" to "Recorrido por la icónica Catedral Metropolitana de Guadalajara"
         ),
         mapOf(
             "titulo" to "Teatro Degollado",
-            "url" to "$BASE_URL/videos/teatro.mp4",
+            "url" to "${Constants.BASE_URL}/videos/teatro.mp4",
             "comentario" to "Conoce la historia del Teatro Degollado, símbolo cultural de Jalisco"
         ),
         mapOf(
             "titulo" to "Tour Tequila",
-            "url" to "$BASE_URL/videos/tequila.mp4",
+            "url" to "${Constants.BASE_URL}/videos/tequila.mp4",
             "comentario" to "Descubre la cuna del tequila mexicano"
         )
     )
@@ -75,7 +75,7 @@ class VideoActivity : AppCompatActivity() {
             shareIntent.type = "text/plain"
             shareIntent.putExtra(
                 Intent.EXTRA_TEXT,
-                "Mira este video de ${videos[indiceActual]["titulo"]} en XploreMX! 🌵"
+                "Mira este video de ${videos[indiceActual]["titulo"]} en XploreMX!"
             )
             startActivity(Intent.createChooser(shareIntent, "Compartir via"))
         }

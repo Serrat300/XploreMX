@@ -1,0 +1,28 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:title="Home"
+        android:icon="@drawable/home"/>
+
+    <item
+        android:id="@+id/nav_experiencias"
+        android:title="Mi Experiencia"
+        android:icon="@drawable/experi"/>
+
+    <item
+        android:id="@+id/nav_notificaciones"
+        android:title="Notificaciones"
+        android:icon="@drawable/noti"/>
+
+    <item
+        android:id="@+id/nav_alarmas"
+        android:title="Recordatorios"
+        android:icon="@drawable/recor"/>
+
+    <item
+        android:id="@+id/nav_sesion"
+        android:title="Cerrar Sesión"
+        android:icon="@drawable/cerrar"/>
+
+</menu>

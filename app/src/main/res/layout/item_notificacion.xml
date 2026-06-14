@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="340dp"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="14dp"
+    android:background="@drawable/bg_card_terracota"
+    android:padding="16dp"
+    android:minHeight="72dp"
+    android:layout_marginTop="40dp"
+    >
+
+    <TextView
+        android:id="@+id/txtTituloNotificacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="17dp"
+        android:text="Festival Cultural"
+        android:textColor="@color/beige_claro"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtFechaNotificacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtTituloNotificacion"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="2dp"
+        android:text="Hoy – 18:00"
+        android:textColor="@color/beige_claro"
+        android:textSize="13sp" />
+
+    <ImageView
+        android:id="@+id/imgCampana"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/noti"
+        android:contentDescription="Notificación" />
+
+</RelativeLayout>

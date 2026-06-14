@@ -15,13 +15,14 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.xploremx.xploremx.R
 import com.xploremx.xploremx.databinding.ActivityLoginBinding
 import org.json.JSONObject
+import com.xploremx.xploremx.utils.Constants
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
     private val RC_SIGN_IN = 100
-    private val URL = "http://192.168.100.56/xploremx/login.php"
+    private val URL = "${Constants.BASE_URL}/login.php"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,7 +84,7 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val user = auth.currentUser
                     val nombre = user?.displayName ?: "Usuario"
-                    val intent = Intent(this, HomeActivity::class.java)
+                    val intent = Intent(this, MainActivity::class.java)
                     intent.putExtra("nombre", nombre)
                     startActivity(intent)
                     finish()
@@ -100,9 +101,17 @@ class LoginActivity : AppCompatActivity() {
             { response ->
                 val json = JSONObject(response)
                 if (json.getBoolean("success")) {
+                    val prefs = getSharedPreferences("xploremx_prefs", MODE_PRIVATE)
+
+                    prefs.edit()
+                        .putInt("id_usuario", json.getInt("id"))
+                        .putString("nombre", json.getString("nombre"))
+                        .apply()
+
                     Toast.makeText(this, "Bienvenid@ ${json.getString("nombre")}", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, HomeActivity::class.java)
+                    val intent = Intent(this, MainActivity::class.java)
                     intent.putExtra("nombre", json.getString("nombre"))
+                    intent.putExtra("idUsuario", json.getInt("id"))
                     startActivity(intent)
                     finish()
                 } else {

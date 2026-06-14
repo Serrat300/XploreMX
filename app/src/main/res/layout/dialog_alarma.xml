@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <EditText
+        android:id="@+id/etDialogTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Título del recordatorio"
+        android:inputType="text"
+        android:textColor="@color/texto_oscuro"
+        android:textColorHint="#B0A090"
+        android:background="@drawable/bg_edittext"
+        android:padding="12dp"
+        android:layout_marginBottom="14dp" />
+
+    <Button
+        android:id="@+id/btnSeleccionarFecha"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Seleccionar fecha"
+        android:textColor="@color/beige_claro"
+        android:background="@drawable/bg_btn_publicar"
+        android:stateListAnimator="@null"
+        android:layout_marginBottom="10dp" />
+
+    <Button
+        android:id="@+id/btnSeleccionarHora"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Seleccionar hora"
+        android:textColor="@color/beige_claro"
+        android:background="@drawable/bg_btn_publicar"
+        android:stateListAnimator="@null" />
+
+</LinearLayout>

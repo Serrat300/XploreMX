@@ -29,7 +29,7 @@ class RutaActivity : AppCompatActivity() {
 
         val nombre = intent.getStringExtra("nombre") ?: "Destino"
         val direccion = intent.getStringExtra("direccion") ?: ""
-        binding.txtNombreRuta.text = "📍 $nombre"
+        binding.txtNombreRuta.text = "$nombre"
 
         // Pedir permisos de ubicación
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)

@@ -5,11 +5,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.xploremx.xploremx.databinding.ActivityDetalleLugarBinding
+import com.xploremx.xploremx.utils.Constants
 
 class DetalleLugarActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetalleLugarBinding
-    private val BASE_URL = "http://192.168.100.56/xploremx"
+    private val BASE_URL = Constants.BASE_URL
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,13 +27,13 @@ class DetalleLugarActivity : AppCompatActivity() {
 
         // Mostrar datos
         binding.txtNombreDetalle.text = nombre
-        binding.txtDireccionDetalle.text = "📍 $direccion"
-        binding.txtCalificacionDetalle.text = "⭐ $calificacion"
+        binding.txtDireccionDetalle.text = " $direccion"
+        binding.txtCalificacionDetalle.text = " $calificacion"
         binding.txtDescripcionDetalle.text = descripcion
 
         // Cargar imagen
         Glide.with(this)
-            .load("$BASE_URL/imagenes/$imagenUrl")
+            .load("${Constants.BASE_URL}/imagenes/$imagenUrl")
             .placeholder(com.xploremx.xploremx.R.mipmap.ic_launcher)
             .into(binding.imgDetalle)
 
@@ -57,7 +58,7 @@ class DetalleLugarActivity : AppCompatActivity() {
         binding.btnCompartir.setOnClickListener {
             val shareIntent = Intent(Intent.ACTION_SEND)
             shareIntent.type = "text/plain"
-            shareIntent.putExtra(Intent.EXTRA_TEXT, "¡Visita $nombre en $direccion! Descarga XploreMX 🌵")
+            shareIntent.putExtra(Intent.EXTRA_TEXT, "¡Visita $nombre en $direccion! Descarga XploreMX")
             startActivity(Intent.createChooser(shareIntent, "Compartir via"))
         }
     }
