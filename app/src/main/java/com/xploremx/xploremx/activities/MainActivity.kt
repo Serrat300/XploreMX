@@ -78,11 +78,17 @@ class MainActivity : AppCompatActivity() {
 
             } else {
 
+                val homeFragment = HomeFragment().apply {
+                    arguments = Bundle().apply {
+                        putString("nombre", nombreUsuario)
+                    }
+                }
+
                 supportFragmentManager
                     .beginTransaction()
                     .replace(
                         R.id.fragmentContainer,
-                        HomeFragment()
+                        homeFragment
                     )
                     .commit()
             }
@@ -93,11 +99,18 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
 
                 R.id.nav_home -> {
+
+                    val homeFragment = HomeFragment().apply {
+                        arguments = Bundle().apply {
+                            putString("nombre", nombreUsuario)
+                        }
+                    }
+
                     supportFragmentManager
                         .beginTransaction()
                         .replace(
                             R.id.fragmentContainer,
-                            HomeFragment()
+                            homeFragment
                         )
                         .commit()
                 }
