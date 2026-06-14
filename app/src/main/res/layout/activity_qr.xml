@@ -15,7 +15,7 @@
         android:textColor="@color/terracota"
         android:layout_marginBottom="24dp"/>
 
-    <FrameLayout
+    <androidx.camera.view.PreviewView
         android:id="@+id/frameScanner"
         android:layout_width="280dp"
         android:layout_height="280dp"

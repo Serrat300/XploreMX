@@ -53,6 +53,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("com.android.volley:volley:1.2.1")
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("com.google.zxing:core:3.5.3")
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("androidx.drawerlayout:drawerlayout:1.2.0")
     implementation("org.osmdroid:osmdroid-android:6.1.17")
