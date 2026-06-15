@@ -24,6 +24,7 @@ class DetalleLugarActivity : AppCompatActivity() {
         val direccion = intent.getStringExtra("direccion") ?: ""
         val calificacion = intent.getDoubleExtra("calificacion", 0.0)
         val imagenUrl = intent.getStringExtra("imagenUrl") ?: ""
+        val videoUrl = intent.getStringExtra("videoUrl") ?: ""
 
         // Mostrar datos
         binding.txtNombreDetalle.text = nombre
@@ -48,6 +49,8 @@ class DetalleLugarActivity : AppCompatActivity() {
         binding.btnVideo.setOnClickListener {
             val intent = Intent(this, VideoActivity::class.java)
             intent.putExtra("nombre", nombre)
+            intent.putExtra("videoUrl", videoUrl)
+            intent.putExtra("descripcion", descripcion)
             startActivity(intent)
         }
 

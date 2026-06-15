@@ -27,7 +27,6 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private var botonSeleccionado: Button? = null
 
     private val listaLugares = mutableListOf<Lugar>()
 
@@ -120,6 +119,7 @@ class HomeFragment : Fragment() {
         intent.putExtra("direccion", lugar.direccion)
         intent.putExtra("calificacion", lugar.calificacion)
         intent.putExtra("imagenUrl", lugar.imagenUrl)
+        intent.putExtra("videoUrl", lugar.videoUrl)
 
         startActivity(intent)
     }
@@ -213,15 +213,12 @@ class HomeFragment : Fragment() {
                             params
 
                         btnTodos.setOnClickListener {
-
-                            seleccionarBoton(btnTodos)
-
                             cargarLugares(null)
                         }
 
-                        binding.layoutCategorias.addView(btnTodos)
-
-                        botonSeleccionado = btnTodos
+                        binding.layoutCategorias.addView(
+                            btnTodos
+                        )
 
                         for (i in 0 until categorias.length()) {
 
@@ -253,8 +250,6 @@ class HomeFragment : Fragment() {
                                 params
 
                             btn.setOnClickListener {
-
-                                seleccionarBoton(btn)
 
                                 cargarLugares(
                                     cat.getInt("id")
@@ -326,6 +321,7 @@ class HomeFragment : Fragment() {
                                     latitud = l.getDouble("latitud"),
                                     longitud = l.getDouble("longitud"),
                                     imagenUrl = if (l.isNull("imagen_url")) "" else l.getString("imagen_url"),
+                                    videoUrl = if (l.isNull("video_url")) "" else l.getString("video_url"),
                                     calificacion = l.getDouble("calificacion"),
                                     idCategoria = l.getInt("id_categoria")
                                 )
@@ -349,42 +345,6 @@ class HomeFragment : Fragment() {
 
         queue.add(request)
     }
-
-    private fun seleccionarBoton(btn: Button) {
-
-        botonSeleccionado?.backgroundTintList =
-            android.content.res.ColorStateList.valueOf(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.verde_profundo
-                )
-            )
-
-        botonSeleccionado?.setTextColor(
-            ContextCompat.getColor(
-                requireContext(),
-                R.color.blanco
-            )
-        )
-
-        btn.backgroundTintList =
-            android.content.res.ColorStateList.valueOf(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.terracota
-                )
-            )
-
-        btn.setTextColor(
-            ContextCompat.getColor(
-                requireContext(),
-                R.color.blanco
-            )
-        )
-
-        botonSeleccionado = btn
-    }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

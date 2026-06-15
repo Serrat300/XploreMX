@@ -8,6 +8,7 @@ data class Lugar(
     val latitud: Double,
     val longitud: Double,
     val imagenUrl: String,
+    val videoUrl: String,
     val calificacion: Double,
     val idCategoria: Int
 )

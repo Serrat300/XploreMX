@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.xploremx.xploremx.R
 import com.xploremx.xploremx.models.Lugar
+import com.xploremx.xploremx.utils.Constants
 
 class LugarAdapter(
     private val context: Context,
@@ -34,7 +35,7 @@ class LugarAdapter(
         holder.txtDireccion.text = lugar.direccion
 
         Glide.with(context)
-            .load("http://192.168.100.56/xploremx/imagenes/${lugar.imagenUrl}")
+            .load("${Constants.BASE_URL}/imagenes/${lugar.imagenUrl}")
             .placeholder(R.mipmap.ic_launcher)
             .into(holder.imgLugar)
 

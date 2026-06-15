@@ -1,7 +1,6 @@
 package com.xploremx.xploremx.activities
 
 import android.content.Intent
-import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.widget.MediaController
@@ -14,86 +13,44 @@ class VideoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityVideoBinding
 
-    // Videos de prueba de YouTube (URLs directas no funcionan, usamos URLs locales)
-    private val videos = listOf(
-        mapOf(
-            "titulo" to "Catedral Metropolitana",
-            "url" to "${Constants.BASE_URL}/videos/catedral.mp4",
-            "comentario" to "Recorrido por la icónica Catedral Metropolitana de Guadalajara"
-        ),
-        mapOf(
-            "titulo" to "Teatro Degollado",
-            "url" to "${Constants.BASE_URL}/videos/teatro.mp4",
-            "comentario" to "Conoce la historia del Teatro Degollado, símbolo cultural de Jalisco"
-        ),
-        mapOf(
-            "titulo" to "Tour Tequila",
-            "url" to "${Constants.BASE_URL}/videos/tequila.mp4",
-            "comentario" to "Descubre la cuna del tequila mexicano"
-        )
-    )
-
-    private var indiceActual = 0
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityVideoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val nombre = intent.getStringExtra("nombre") ?: "Video"
+        val videoUrl = intent.getStringExtra("videoUrl") ?: ""
+        val descripcion = intent.getStringExtra("descripcion") ?: ""
+
         binding.txtNombreVideo.text = nombre
+        binding.txtComentarioVideo.text = descripcion
 
         // Configurar MediaController
         val mediaController = MediaController(this)
         mediaController.setAnchorView(binding.videoView)
         binding.videoView.setMediaController(mediaController)
 
-        // Cargar primer video
-        cargarVideo(indiceActual)
-
-        // Botones
-        binding.btnAnterior.setOnClickListener {
-            if (indiceActual > 0) {
-                indiceActual--
-                cargarVideo(indiceActual)
-            } else {
-                Toast.makeText(this, "Es el primer video", Toast.LENGTH_SHORT).show()
+        if (videoUrl.isEmpty()) {
+            Toast.makeText(this, "Este lugar no tiene video disponible", Toast.LENGTH_SHORT).show()
+        } else {
+            val uri = Uri.parse("${Constants.BASE_URL}/videos/$videoUrl")
+            binding.videoView.setVideoURI(uri)
+            binding.videoView.setOnPreparedListener { mp -> mp.start() }
+            binding.videoView.setOnErrorListener { _, _, _ ->
+                Toast.makeText(this, "No se pudo cargar el video", Toast.LENGTH_SHORT).show()
+                true
             }
         }
 
-        binding.btnSiguiente.setOnClickListener {
-            if (indiceActual < videos.size - 1) {
-                indiceActual++
-                cargarVideo(indiceActual)
-            } else {
-                Toast.makeText(this, "Es el último video", Toast.LENGTH_SHORT).show()
-            }
-        }
+        // Ya no aplican con un solo video por lugar, los desactivamos
+        binding.btnAnterior.isEnabled = false
+        binding.btnSiguiente.isEnabled = false
 
         binding.btnCompartirVideo.setOnClickListener {
             val shareIntent = Intent(Intent.ACTION_SEND)
             shareIntent.type = "text/plain"
-            shareIntent.putExtra(
-                Intent.EXTRA_TEXT,
-                "Mira este video de ${videos[indiceActual]["titulo"]} en XploreMX!"
-            )
+            shareIntent.putExtra(Intent.EXTRA_TEXT, "Mira este video de $nombre en XploreMX!")
             startActivity(Intent.createChooser(shareIntent, "Compartir via"))
-        }
-    }
-
-    private fun cargarVideo(indice: Int) {
-        val video = videos[indice]
-        binding.txtNombreVideo.text = video["titulo"]
-        binding.txtComentarioVideo.text = video["comentario"]
-
-        val uri = Uri.parse(video["url"])
-        binding.videoView.setVideoURI(uri)
-        binding.videoView.setOnPreparedListener { mp ->
-            mp.start()
-        }
-        binding.videoView.setOnErrorListener { _, _, _ ->
-            Toast.makeText(this, "No se pudo cargar el video", Toast.LENGTH_SHORT).show()
-            true
         }
     }
 
