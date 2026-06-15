@@ -98,21 +98,16 @@ class MainActivity : AppCompatActivity() {
 
             when (it.itemId) {
 
-                R.id.nav_home -> {
+                R.id.nav_sesion -> {
+                    getSharedPreferences("xploremx_prefs", MODE_PRIVATE)
+                        .edit().clear().apply()
 
-                    val homeFragment = HomeFragment().apply {
-                        arguments = Bundle().apply {
-                            putString("nombre", nombreUsuario)
-                        }
-                    }
+                    com.google.firebase.auth.FirebaseAuth.getInstance().signOut()
 
-                    supportFragmentManager
-                        .beginTransaction()
-                        .replace(
-                            R.id.fragmentContainer,
-                            homeFragment
-                        )
-                        .commit()
+                    val intent = android.content.Intent(this, LoginActivity::class.java)
+                    intent.flags = android.content.Intent.FLAG_ACTIVITY_NEW_TASK or android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    finish()
                 }
 
                 R.id.nav_experiencias -> {
